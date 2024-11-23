@@ -7,13 +7,13 @@ f you invest your money in the stock market, you already know how important it i
 What if we automate this task? The scripts provided are purely written in Python and perform the task of extracting data from the main websites.
 
 ---
-## StatusInvest.py
+## status_invest.py
 
 Retrieve the companies infos from [Status Invest](https://statusinvest.com.br/) website.
 
 Requirements:
 - Python 3.x.
-- Libs: Requests, BeautifulSoup, Lxml, Pandas.
+- Libs: Requests, BeautifulSoup, Lxml, Pandas, Numpy.
 
 Classes:
 - StocksBR: Retrieve the brazilian stocks infos.
@@ -30,28 +30,27 @@ Functions:
 
 Exemple:
 ```python
-z = StocksBR()
-t = "wege3"
-a = z.info(ticket=t)
-b = z.price(ticket=t)
-c = z.kpi(ticket=t)
-d = z.table(ticket=t)
+T = "O"
+# z = StocksBR(ticket=T)
+# z = ReitsBR(ticket=T)
+# z = ETFsBR(ticket=T)
+# z = StocksReits(ticket=T, type_asset="STOCKS")
+z = StocksReits(ticket=T, type_asset="REITS")
+# z = ETFs(ticket=T)
 
-z = StocksReits()
-t = "msft"
-a = z.info(ticket=t, type_asset="STOCK")
-b = z.price(ticket=t, type_asset="STOCK")
-c = z.kpi(ticket=t, type_asset="STOCK")
-d = z.table(ticket=t, type_asset="STOCK")
+a = z.info()
+b = z.price()
+c = z.kpi()
+d = z.table()
 ```
 ---
-## Investidor10.py
+## investidor_10.py
 
 Retrieve the companies infos from [Investidor 10](https://investidor10.com.br/) website.
 
 Requirements:
 - Python 3.x.
-- Libs: Requests, BeautifulSoup, Lxml, Pandas.
+- Libs: Requests, BeautifulSoup, Lxml, Pandas, Numpy.
 
 Classes:
 - StocksBR: Retrieve the brazilian stocks companies infos.
@@ -68,31 +67,31 @@ Functions:
 
 Exemple:
 ```python
-a = etfbr_auxtable()  # Necessary execute first.
-b = etf_auxtable()  # Necessary execute first.
+# Necessary execute first to execute brazilian and global ETFs.
+a = etfbr_auxtable()
+b = etf_auxtable()
 
-z = StocksBR()
-t = "bbse3"
-a = z.info(ticket=t)
-b = z.price(ticket=t)
-c = z.kpi(ticket=t)
-d = z.table(ticket=t)
+T = "BBAS3"
+z = StocksBR(ticket=T)
+#z = ReitsBR(ticket=T)
+#z = ETFsBR(ticket=T)
+#z = StocksReits(ticket=T, type_asset="STOCKS")
+#z = StocksReits(ticket=T, type_asset="REITS")
+#z = ETFs(ticket=T)
 
-z = StocksReits()
-t = "o"
-a = z.info(ticket=t, type_asset="REIT")
-b = z.price(ticket=t, type_asset="REIT")
-c = z.kpi(ticket=t, type_asset="REIT")
-d = z.table(ticket=t, type_asset="REIT")
+a = z.info()
+b = z.price()
+c = z.kpi()
+d = z.table()
 ```
 ---
-## Fundamentus.py
+## fundamentus.py
 
 Retrieve the companies infos from [Fundamentus](https://www.fundamentus.com.br/) website.
 
 Requirements:
 - Python 3.x.
-- Libs: Requests, BeautifulSoup, Timedelta, Pandas.
+- Libs: Requests, BeautifulSoup, Timedelta, Pandas, Numpy.
 
 Classes:
 - StocksBR: Retrieve the brazilian stocks companies infos.
@@ -106,24 +105,26 @@ Functions:
 
 Exemple:
 ```python
-a = etfbr_auxtable()  # Necessary execute first.
-b = etf_auxtable()  # Necessary execute first.
+T = "VIVT3"
+x = StocksBR(ticket=T, type_table="KPI")
+y = StocksBR(ticket=T, type_table="PAYMENT")
+# t = "HGLG11"
+# x = ReitsBR(ticket=t, type_table="KPI")
+# y = ReitsBR(ticket=t, type_table="PAYMENT")
 
-z = StocksBR()
-t = "bbse3"
-a = z.table()
-b = z.price(ticket=t)
-c = z.kpi(ticket=t)
-d = z.payments(ticket=t)
+a = x.table()
+b = x.price()
+c = x.kpi()
+d = y.payments()
 ```
 ---
-## YahooFinance.py
+## yahoo_finance.py
 
 Retrieve the companies infos from [Yahoo Finances](https://br.financas.yahoo.com) website.
 
 Requirements:
 - Python 3.x.
-- Libs: Yfinance, Pandas.
+- Libs: Yfinance, Pandas, Numpy.
 
 Classes:
 - AllTypeAssets: Retrieve the stocks, reits and ETF's companies infos.
@@ -137,30 +138,23 @@ Functions:
 
 Exemple:
 ```python
-z = AllTypeAssets()
+T = "VT"
+z = AllTypeAssets(ticket=T, country=None)
 
-t = "wege3"
-a = z.info(ticket=t, country="BR")
-b = z.price(ticket=t, country="BR")
-c = z.kpi(ticket=t, country="BR")
-d = z.payments(ticket=t, country="BR")
-e = z.table(ticket=t, country="BR")
-
-t = "msft"
-a = z.info(ticket=t)
-b = z.price(ticket=t)
-c = z.kpi(ticket=t)
-d = z.payments(ticket=t)
-e = z.table(ticket=t)
+a = z.info()
+b = z.price()
+c = z.kpi()
+d = z.payments(start="2018-01-01")
+e = z.table()
 ```
 ---
-## DividendInvestor.py
+## dividend_investor.py
 
 Retrieve the companies infos from [Dividend Investor](https://www.dividendinvestor.com/) website.
 
 Requirements:
 - Python 3.x.
-- Libs: Requests, BeautifulSoup, Lxml, Pandas.
+- Libs: Requests, BeautifulSoup, Pandas.
 
 Classes:
 - StocksReitsETFs: Retrieve the stocks, reits and ETF's companies infos.
@@ -170,12 +164,12 @@ Functions:
 
 Exemple:
 ```python
-z = StocksReitsETFs()
-t = "msft"
-d = z.payments(t)
+T = "msft"
+z = StocksReitsETFs(ticket=T)
+a = z.payments()
 ```
 ---
-## ExchangeRate.py
+## exchange_rate.py
 
 Exchange rate extracted from Brazil central bank.
 
@@ -190,9 +184,9 @@ Functions:
 
 Exemple:
 ```python
-a = ptax_bcb(StartDate="01-01-2018", Currency="USD")
-b = ptax_today_bcb(Currency="USD")
-c = ptax_today(Currency="USD-BRL")
+a = ptax_bcb(start_date="01-01-2018", currency="USD")
+b = ptax_today_bcb(currency="USD")
+c = ptax_today(currency="USD-BRL")
 ```
 ---
 ## KPIsRF.py
@@ -201,7 +195,7 @@ Exchange rate function.
 
 Requirements:
 - Python 3.x.
-- Libs: Pandas, Numpy.
+- Libs: Pandas.
 
 Functions:
 - cdi_annually: Function to access BCB open data API.
